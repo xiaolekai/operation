@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular指令</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .pink{
+            color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="one">
+        <input type="text" placeholder="请输入用户名" ng-model="username">
+        <p>hello:{{username}}</p>
+        <!--ng-click-->
+        <input type="button" value="提交" ng-click="showname()">
+        <!--ng-bind-->
+        <p ng-bind="demoname"></p>
+    </div>
+    <div ng-controller="one1">
+        <!--ng-class-->
+        <div ng-class="red">
+            黑色星期五
+        </div>
+        <div ng-class="blue">
+            黑色左同桌
+        </div>
+        <div ng-show="true">
+            张腾:true
+        </div>
+        <div ng-hide="false">
+            张腾:false
+        </div>
+    </div>
+    <!--ng-repeat-->
+    <div ng-controller="one2">
+        <table>
+            <tr ng-repeat="item in arr">
+                <td>{{item.user}}</td><td>{{item.age}}</td>
+            </tr>
+        </table>
+        <select name="" id="">
+            <option ng-repeat="i in area" value="">{{i.city}}</option>
+        </select>
+        <select name="" id="" ng-repeat="i in area">
+            <option value="" ng-repeat="j in i.small">{{j}}</option>
+        </select>
+    </div>
+</div>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script>
+    var app=angular.module('myApp',[])
+    app.controller('one',function($scope){
+        $scope.username='拜拜';
+        $scope.demoname="this is ng-bind."
+        $scope.showname=function(){
+            console.log($scope.username)
+        }
+    })
+    app.controller('one1',function($scope){
+        $scope.red='red';
+        $scope.blue='pink';
+    })
+    app.controller('one2',function($scope){
+        $scope.arr=[
+            {
+                user:'张腾',
+                age:80
+            },
+            {
+                user:'冯玲',
+                age:21
+            },{
+                user:'张凯',
+                age:23
+            }
+
+        ];
+        $scope.area=[
+            {
+                city:'北京',
+                small:['上地','海淀','朝阳']
+            },
+            {
+                city:'香港',
+                small:['香港迪士尼','铜锣湾','尖沙咀']
+            },
+            {
+                city:'承德',
+                small:['双桥区','火神庙','昌平']
+            }
+        ]
+    })
+</script>
+</body>
+</html>
